@@ -27,17 +27,10 @@ export default class Login extends Component {
                                         <label className="custom-control-label" for="customCheck">Remember Me</label>
                                     </div>
                                     </div>
-                                    <a href="index.html" className="btn btn-primary btn-user btn-block">
+                                    <a href="/dashboard" className="btn btn-primary btn-user btn-block">
                                     Login
                                     </a>
                                 </form>
-                                <hr />
-                                {/* <div className="text-center">
-                                    <a className="small" href="forgot-password.html">Forgot Password?</a>
-                                </div> */}
-                                <div className="text-center">
-                                    <a className="small" href="register.html">Create an Account!</a>
-                                </div>
                                 </div>
                             </div>
                             </div>
