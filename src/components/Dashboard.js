@@ -4,9 +4,9 @@ import Topbar from './Topbar'
 import Footer from './Footer'
 
 export default class Dashboard extends Component {
-    constructor(props) {
-        super(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
     render() {
         return (
             <div id="wrapper">
