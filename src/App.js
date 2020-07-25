@@ -1,18 +1,47 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import { Route, Switch } from "react-router-dom";
 import Login from './components/Login'
 import Dashboard from './components/Dashboard'
 
-function App() {
-  return (
-    <div className="App">
-      <Switch>
-        <Route exact={true} path="/" component={Login} />
-        <Route exact={true} path="/dashboard" component={Dashboard} />
-      </Switch>
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      loggedInStatus: "NOT_LOGGED_IN",
+      user: {}
+    }
+
+    this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this);
+
+  }
+
+  handleSuccessfulAuth(data) {
+    this.setState({
+      loggedInStatus: "LOGGED_IN",
+      user: data
+    })
+    this.props.history.push("/dashboard");
+  }
+
+  render(){
+    return (
+      <div className="App">
+        <Switch>
+          <Route exact={true} path="/" component={Login} 
+          handleSuccessfulAuth={this.handleSuccessfulAuth}/>
+          <Route 
+          exact={true} 
+          path="/dashboard" 
+          //component={Dashboard}
+          render = {props => (
+            <Dashboard {...props} loggedInStatus={this.state.loggedInStatus}/>
+          )} />
+        </Switch>
+      </div>
+    );
+  }
 }
 
 export default App;
