@@ -6,7 +6,6 @@ import { url } from '../utils/config';
 export default class Login extends Component {
     constructor() {
         super();
-
         this.state = {
             email: "",
             password: "",
@@ -25,23 +24,19 @@ export default class Login extends Component {
 
     handleSubmit(e) {
         const {email , password} = this.state;
-        console.log(email, password);
-        axios
-            .post(
-                `${url}/authentication`,
-                {
-                    email: email,
-                    password: password,
-                    strategy: "local"
-                },
-                {withCredentials: true},
-                //{ headers: headers }
-            )
+        let data = {
+            email, 
+            password,
+            strategy: "local"
+        }
+        axios.post(`${url}/authentication`, data)
             .then(res => {
-                console.log(res)
-                if (res.data.status === 200) {
-                   // localStorage.setItem('accessToken', token); 
-                    this.props.handleSuccessfulAuth(res.data);
+                //console.log(res.data);
+                const { token, user } = res.data
+                if (res.status === 201) {
+                   localStorage.setItem('accessToken', token);
+                    //this.props.successfulAuth(user);
+                    this.props.history.push("/dashboard");
                 }
             })
             .catch( err => {

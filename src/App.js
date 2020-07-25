@@ -5,16 +5,13 @@ import Login from './components/Login'
 import Dashboard from './components/Dashboard'
 
 class App extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      loggedInStatus: "NOT_LOGGED_IN",
-      user: {}
-    }
-
+  constructor(props) {
+    super(props);
+      this.state = {
+        loggedInStatus: "NOT_LOGGED_IN",
+        user: {}
+      }
     this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this);
-
   }
 
   handleSuccessfulAuth(data) {
@@ -30,7 +27,8 @@ class App extends Component {
       <div className="App">
         <Switch>
           <Route exact={true} path="/" component={Login} 
-          handleSuccessfulAuth={this.handleSuccessfulAuth}/>
+            successfulAuth={this.handleSuccessfulAuth}
+          />
           <Route 
           exact={true} 
           path="/dashboard" 
