@@ -4,6 +4,9 @@ import Topbar from './Topbar'
 import Footer from './Footer'
 
 export default class Dashboard extends Component {
+    constructor(props) {
+        super(props);
+    }
     render() {
         return (
             <div id="wrapper">
@@ -12,7 +15,7 @@ export default class Dashboard extends Component {
                 <div id="content-wrapper" className="d-flex flex-column">
                     <div id="content">
                     {/* topbar */}
-                    <Topbar />
+                    <Topbar status={this.props.loggedInStatus}/>
                         <div className="container-fluid">
                         
                         <div className="row">
