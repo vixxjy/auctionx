@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 //import headers from '../utils/header'
+import { url } from '../utils/config';
 
 export default class Login extends Component {
     constructor() {
@@ -27,7 +28,7 @@ export default class Login extends Component {
         console.log(email, password);
         axios
             .post(
-                "https://foodpoolfarm.herokuapp.com/authentication",
+                `${url}/authentication`,
                 {
                     email: email,
                     password: password,
