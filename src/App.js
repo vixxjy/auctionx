@@ -3,6 +3,7 @@ import './App.css';
 import { Route, Switch } from "react-router-dom";
 import Login from './components/Login'
 import Dashboard from './components/Dashboard'
+import Category from './components/Poducts/Category'
 
 class App extends Component {
   constructor(props) {
@@ -36,6 +37,8 @@ class App extends Component {
           render = {props => (
             <Dashboard {...props} loggedInStatus={this.state.loggedInStatus}/>
           )} />
+           <Route exact={true} path="/category" component={Category} 
+          />
         </Switch>
       </div>
     );

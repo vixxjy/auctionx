@@ -29,6 +29,7 @@ export default class Login extends Component {
             password,
             strategy: "local"
         }
+        
         axios.post(`${url}/authentication`, data)
             .then(res => {
                 //console.log(res.data);

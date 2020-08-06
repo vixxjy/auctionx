@@ -27,20 +27,35 @@ export default class Sidebar extends Component {
                 </div>
 
                 <li className="nav-item">
-                <a className="nav-link collapsed" href="!#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                <a className="nav-link collapsed" href="!#" data-toggle="collapse" data-target="#products" aria-expanded="true" aria-controls="products">
                     <i className="fas fa-fw fa-folder"></i>
-                    <span>Add Products</span>
+                    <span>Products</span>
                 </a>
-                <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="products" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div className="bg-white py-2 collapse-inner rounded">
-                    <h6 className="collapse-header">Custom Components:</h6>
-                    <a className="collapse-item" href="!#">Buttons</a>
-                    <a className="collapse-item" href="!#">Cards</a>
+                    <a className="collapse-item" href="!#">Add Product</a>
+                    {/* <a className="collapse-item" href="!#">Cards</a> */}
+                    </div>
+                </div>
+                </li>
+
+                {/* <div className="sidebar-heading">
+                    Category
+                </div> */}
+
+                <li className="nav-item">
+                <a className="nav-link collapsed" href="!#" data-toggle="collapse" data-target="#category" aria-expanded="true" aria-controls="category">
+                    <i className="fas fa-fw fa-folder"></i>
+                    <span>Category</span>
+                </a>
+                <div id="category" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div className="bg-white py-2 collapse-inner rounded">
+                    <a className="collapse-item" href="/category">Add Category</a>
+                    {/* <a className="collapse-item" href="!#">Cards</a> */}
                     </div>
                 </div>
                 </li>
                 <hr className="sidebar-divider" />
-        
         
                 <div className="sidebar-heading">
                 All Users
