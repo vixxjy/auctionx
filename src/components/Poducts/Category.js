@@ -52,7 +52,11 @@ export default class Category extends Component {
     }
 
     getCategories() {
-        axios.get(`${url}/category`, { headers: headers })
+        axios.get(`${url}/category`, 
+        { headers: {
+            'Content-Type': 'application/json'
+        } }
+        )
         .then(res => {
             console.log(res);
             if (res.status === 200) {
@@ -120,7 +124,7 @@ export default class Category extends Component {
                                                                 <tr key={i}>
                                                                     <td>{data.name}</td>
                                                                     <td> 
-                                                                        <img src="" alt="imagec" />
+                                                                        <img src="https://pandafoods.co.in/wp-content/uploads/2015/02/spices-0011.jpg" style={{height: '50px', width: '50px'}} alt="imagec" />
                                                                     </td>
                                                                     <td>
                                                                         <a href="!#">
