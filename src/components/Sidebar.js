@@ -15,7 +15,7 @@ export default class Sidebar extends Component {
                 <hr className="sidebar-divider my-0" />
 
                 <li className="nav-item">
-                <a className="nav-link" href="!#">
+                <a className="nav-link" href="/dashboard">
                     <i className="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
                 </li>
@@ -33,7 +33,7 @@ export default class Sidebar extends Component {
                 </a>
                 <div id="products" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div className="bg-white py-2 collapse-inner rounded">
-                    <a className="collapse-item" href="!#">Add Product</a>
+                    <a className="collapse-item" href="/product">Add Product</a>
                     {/* <a className="collapse-item" href="!#">Cards</a> */}
                     </div>
                 </div>

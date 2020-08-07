@@ -3,9 +3,9 @@ const getJwt = () => {
     return localStorage.getItem('accessToken');
 };
 
-const jwt = getJwt();
-
-export default headers = {
+const headers = {
     'Content-Type': 'application/json',
-    'access_token': `${jwt}` 
+    'Authorization': `Bearer ${getJwt()}` 
 }
+
+export default headers;

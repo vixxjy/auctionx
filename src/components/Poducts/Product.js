@@ -1,28 +1,20 @@
 import React, { Component } from 'react'
-import axios from 'axios'
-import { url } from '../../utils/config';
-import headers from '../../utils/header'
 import Sidebar from '../Sidebar'
 import Topbar from '../Topbar'
 import Footer from '../Footer'
 
-export default class Category extends Component {
+export default class Product extends Component {
     constructor(props) {
         super(props);
         this.state = {
             name: "",
             image: "",
-            categories: []
+            slot: "",
+            category: ""
         }
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.getCategories = this.getCategories.bind(this);
-    }
-
-    componentDidMount() {
-        this.getCategories();
-
     }
 
     handleChange(e) {
@@ -38,33 +30,8 @@ export default class Category extends Component {
             name, 
             image
         }
-        axios.post(`${url}/category`, data, { headers: headers })
-            .then(res => {
-                if (res.status === 201) {
-                    console.log("category created")
-                }
-            })
-            .catch( err => {
-                console.log("category error", err)
-            });
-            
-            e.preventDefault();
-    }
 
-    getCategories() {
-        axios.get(`${url}/category`, { headers: headers })
-        .then(res => {
-            console.log(res);
-            if (res.status === 200) {
-                this.setState({
-                    categories: res.data.data
-                  });
-                console.log("get category created")
-            }
-        })
-        .catch( err => {
-            console.log("get category error", err)
-        });
+        console.log(data)
     }
         
     render() {
@@ -81,7 +48,7 @@ export default class Category extends Component {
                             <div className="col-xl-12 col-lg-12">
                             <div className="card shadow mb-4">
                                 <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 className="m-0 font-weight-bold text-primary">Products Category</h6>
+                                <h6 className="m-0 font-weight-bold text-primary">Products</h6>
 
                                 </div>
                                 <div className="card-body">
@@ -99,7 +66,22 @@ export default class Category extends Component {
                                             <input type="file" className="form-control" name="image" />
                                             </div>
                                         </div>
-                                
+                                        <div className="form-group row">
+                                            <label htmlFor="exampleInputEmail2" className="col-sm-3 col-form-label">Category</label>
+                                            <div className="col-sm-6">
+                                                <select className="form-control" name="category" onChange={this.handleChange} value={this.state.category} required>
+                                                    <option value="" disabled>select product category</option>
+                                                    <option value="english">English</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div className="form-group row">
+                                            <label htmlFor="exampleInputUsername2" className="col-sm-3 col-form-label">Slot</label>
+                                            <div className="col-sm-6">
+                                            <input type="text" className="form-control" name="slot" required
+                                            onChange={this.handleChange} value={this.state.slot} placeholder="slot"/>
+                                            </div>
+                                        </div>
                                         <button type="submit" className="btn btn-primary mr-2">Submit</button>
                                         
                                     </form>
@@ -116,9 +98,9 @@ export default class Category extends Component {
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                        {this.state.categories.sort((a, b) => { return a._id < b._id}).map((data, i) => 
-                                                                <tr key={i}>
-                                                                    <td>{data.name}</td>
+                                                  
+                                                                <tr>
+                                                                    <td></td>
                                                                     <td> 
                                                                         <img src="" alt="imagec" />
                                                                     </td>
@@ -134,7 +116,7 @@ export default class Category extends Component {
                                                                         
                                                                     </td>
                                                                 </tr>
-                                                            )}
+                                                   
                                                         </tbody>
                                                     </table>
 

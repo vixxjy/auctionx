@@ -33,9 +33,9 @@ export default class Login extends Component {
         axios.post(`${url}/authentication`, data)
             .then(res => {
                 //console.log(res.data);
-                const { token, user } = res.data
+                const { accessToken } = res.data
                 if (res.status === 201) {
-                   localStorage.setItem('accessToken', token);
+                   localStorage.setItem('accessToken', accessToken);
                     //this.props.successfulAuth(user);
                     this.props.history.push("/dashboard");
                 }
