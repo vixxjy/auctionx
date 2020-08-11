@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import axios from 'axios'
+import { url } from '../../utils/config';
+import headers from '../../utils/header'
 import Sidebar from '../Sidebar'
 import Topbar from '../Topbar'
 import Footer from '../Footer'
@@ -10,11 +13,18 @@ export default class Product extends Component {
             name: "",
             image: "",
             slot: "",
-            category: ""
+            category: "",
+            price: "",
+            categories: []
         }
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentDidMount() {
+        this.getCategories();
+
     }
 
     handleChange(e) {
@@ -24,14 +34,47 @@ export default class Product extends Component {
     }
 
     handleSubmit(e) {
-        const {name , image} = this.state;
+        e.preventDefault();
+        const {name, image, slot, category, price} = this.state;
         
         let data = {
             name, 
-            image
+            image,
+            slot, 
+            category, 
+            price
         }
 
         console.log(data)
+        axios.post(`${url}/category`, data, { headers: headers })
+        .then(res => {
+            if (res.status === 201) {
+                console.log("product created")
+            }
+        })
+        .catch( err => {
+            console.log("product error", err)
+        });
+        
+    }
+
+    getCategories() {
+        axios.get(`${url}/category`, 
+        { headers: {
+            'Content-Type': 'application/json'
+        } }
+        )
+        .then(res => {
+            console.log(res);
+            if (res.status === 200) {
+                this.setState({
+                    categories: res.data.data
+                  });
+            }
+        })
+        .catch( err => {
+            console.log("get category error", err)
+        });
     }
         
     render() {
@@ -71,7 +114,9 @@ export default class Product extends Component {
                                             <div className="col-sm-6">
                                                 <select className="form-control" name="category" onChange={this.handleChange} value={this.state.category} required>
                                                     <option value="" disabled>select product category</option>
-                                                    <option value="english">English</option>
+                                                    {this.state.categories.sort((a, b) => { return a._id < b._id}).map((data, i) => 
+                                                    <option key={i} value={data.name}>{data.name}</option>
+                                                    )}
                                                 </select>
                                             </div>
                                         </div>
@@ -82,45 +127,16 @@ export default class Product extends Component {
                                             onChange={this.handleChange} value={this.state.slot} placeholder="slot"/>
                                             </div>
                                         </div>
+                                        <div className="form-group row">
+                                            <label htmlFor="exampleInputUsername2" className="col-sm-3 col-form-label">Price</label>
+                                            <div className="col-sm-6">
+                                            <input type="text" className="form-control" name="price" required
+                                            onChange={this.handleChange} value={this.state.price} placeholder="Product Price"/>
+                                            </div>
+                                        </div>
                                         <button type="submit" className="btn btn-primary mr-2">Submit</button>
                                         
                                     </form>
-                                    <hr />
-                                    <div className="table-responsive">
-                                               
-                                                    <table className="table table-striped">
-                                                        <thead>
-                                                            <tr>
-                                                               
-                                                                <th>Name</th>
-                                                                <th>Image</th>
-                                                                <th>Operations</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                  
-                                                                <tr>
-                                                                    <td></td>
-                                                                    <td> 
-                                                                        <img src="" alt="imagec" />
-                                                                    </td>
-                                                                    <td>
-                                                                        <a href="!#">
-                                                                            <button className="btn btn-primary btn-sm">
-                                                                            <span className="fas fa-fw fa-pen"></span>
-                                                                            </button>
-                                                                        </a>
-                                                                        <button data-toggle="modal" data-target="" className="btn btn-danger btn-sm">
-                                                                        <span className="fas fa-fw fa-trash"></span>
-                                                                        </button>
-                                                                        
-                                                                    </td>
-                                                                </tr>
-                                                   
-                                                        </tbody>
-                                                    </table>
-
-                                                </div>
                                 </div>
                             </div>
                             </div>

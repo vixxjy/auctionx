@@ -33,7 +33,8 @@ export default class Sidebar extends Component {
                 </a>
                 <div id="products" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div className="bg-white py-2 collapse-inner rounded">
-                    <a className="collapse-item" href="/product">Add Product</a>
+                    <a className="collapse-item" href="/product">All Product</a>
+                    <a className="collapse-item" href="/add-product">Add Product</a>
                     {/* <a className="collapse-item" href="!#">Cards</a> */}
                     </div>
                 </div>

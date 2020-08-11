@@ -5,6 +5,7 @@ import Login from './components/Login'
 import Dashboard from './components/Dashboard'
 import Category from './components/Poducts/Category'
 import Product from './components/Poducts/Product'
+import ProductList from './components/Poducts/ProductList'
 
 class App extends Component {
   constructor(props) {
@@ -40,7 +41,9 @@ class App extends Component {
           )} />
            <Route exact={true} path="/category" component={Category} 
           />
-          <Route exact={true} path="/product" component={Product} 
+           <Route exact={true} path="/add-product" component={Product} 
+          />
+          <Route exact={true} path="/product" component={ProductList} 
           />
         </Switch>
       </div>
