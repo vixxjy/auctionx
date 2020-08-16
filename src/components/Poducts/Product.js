@@ -12,9 +12,16 @@ export default class Product extends Component {
         this.state = {
             name: "",
             image: "",
-            slot: "",
+            thumbnail: "",
+            description: "",
+            total_slot: "",
+            available_slot: "",
+            location: "",
             category: "",
             price: "",
+            status: "",
+            hot: "",
+            user_type: "",
             categories: []
         }
 
@@ -35,18 +42,26 @@ export default class Product extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        const {name, image, slot, category, price} = this.state;
+        const {name, image, total_slot, available_slot, thumbnail, description, category, 
+            price, location, user_type, status, hot} = this.state;
         
         let data = {
             name, 
-            image,
-            slot, 
+            image, 
             category, 
-            price
+            total_slot, 
+            available_slot, 
+            thumbnail, 
+            description,
+            price,
+            location, 
+            user_type, 
+            status,
+            hot
         }
 
         console.log(data)
-        axios.post(`${url}/category`, data, { headers: headers })
+        axios.post(`${url}/products`, data, { headers: headers })
         .then(res => {
             if (res.status === 201) {
                 console.log("product created")
@@ -100,13 +115,19 @@ export default class Product extends Component {
                                             <label htmlFor="exampleInputUsername2" className="col-sm-3 col-form-label">Name</label>
                                             <div className="col-sm-6">
                                             <input type="text" className="form-control" name="name" required
-                                            onChange={this.handleChange} value={this.state.name} placeholder="Category Name"/>
+                                            onChange={this.handleChange} value={this.state.name} placeholder="Product Name"/>
                                             </div>
                                         </div>
                                         <div className="form-group row">
                                             <label htmlFor="exampleInputUsername2" className="col-sm-3 col-form-label">Image</label>
                                             <div className="col-sm-6">
                                             <input type="file" className="form-control" name="image" />
+                                            </div>
+                                        </div>
+                                        <div className="form-group row">
+                                            <label htmlFor="exampleInputUsername2" className="col-sm-3 col-form-label">Thumbnail</label>
+                                            <div className="col-sm-6">
+                                            <input type="file" className="form-control" name="thumbnail" />
                                             </div>
                                         </div>
                                         <div className="form-group row">
@@ -121,10 +142,56 @@ export default class Product extends Component {
                                             </div>
                                         </div>
                                         <div className="form-group row">
-                                            <label htmlFor="exampleInputUsername2" className="col-sm-3 col-form-label">Slot</label>
+                                            <label htmlFor="exampleInputEmail2" className="col-sm-3 col-form-label">Status</label>
                                             <div className="col-sm-6">
-                                            <input type="text" className="form-control" name="slot" required
-                                            onChange={this.handleChange} value={this.state.slot} placeholder="slot"/>
+                                                <select className="form-control" name="status" onChange={this.handleChange} value={this.state.status} required>
+                                                    <option value="" disabled>select product status</option>
+                                                    <option value="open">Open</option>
+                                                    <option value="selling">Selling</option>
+                                                    <option value="sold">Sold</option>
+                                                    <option value="soon">Soon</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div className="form-group row">
+                                            <label htmlFor="exampleInputEmail2" className="col-sm-3 col-form-label">User Type</label>
+                                            <div className="col-sm-6">
+                                                <select className="form-control" name="user_type" onChange={this.handleChange} value={this.state.user_type} required>
+                                                    <option value="" disabled>select user type</option>
+                                                    <option value="premium">premium</option>
+                                                    <option value="starter">starter</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div className="form-group row">
+                                            <label htmlFor="exampleInputEmail2" className="col-sm-3 col-form-label">Hot</label>
+                                            <div className="col-sm-6">
+                                                <select className="form-control" name="hot" onChange={this.handleChange} value={this.state.hot} required>
+                                                    <option value="" disabled>select hot deals</option>
+                                                    <option value="yes">YES</option>
+                                                    <option value="No">NO</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div className="form-group row">
+                                            <label htmlFor="exampleInputUsername2" className="col-sm-3 col-form-label">Location</label>
+                                            <div className="col-sm-6">
+                                            <input type="text" className="form-control" name="location" required
+                                            onChange={this.handleChange} value={this.state.location} placeholder="loacation"/>
+                                            </div>
+                                        </div>
+                                        <div className="form-group row">
+                                            <label htmlFor="exampleInputUsername2" className="col-sm-3 col-form-label">Total Slot</label>
+                                            <div className="col-sm-6">
+                                            <input type="text" className="form-control" name="total_slot" required
+                                            onChange={this.handleChange} value={this.state.total_slot} placeholder="Total slot"/>
+                                            </div>
+                                        </div>
+                                        <div className="form-group row">
+                                            <label htmlFor="exampleInputUsername2" className="col-sm-3 col-form-label">Available Slot</label>
+                                            <div className="col-sm-6">
+                                            <input type="text" className="form-control" name="available_slot" required
+                                            onChange={this.handleChange} value={this.state.available_slot} placeholder="Available slot"/>
                                             </div>
                                         </div>
                                         <div className="form-group row">
@@ -132,6 +199,13 @@ export default class Product extends Component {
                                             <div className="col-sm-6">
                                             <input type="text" className="form-control" name="price" required
                                             onChange={this.handleChange} value={this.state.price} placeholder="Product Price"/>
+                                            </div>
+                                        </div>
+                                        <div className="form-group row">
+                                            <label htmlFor="exampleInputUsername2" className="col-sm-3 col-form-label">Description</label>
+                                            <div className="col-sm-6">
+                                            <textarea className="form-control" id="exampleFormControlTextarea1" rows="4" 
+                                            name="description" onChange={this.handleChange} value={this.state.description}></textarea>
                                             </div>
                                         </div>
                                         <button type="submit" className="btn btn-primary mr-2">Submit</button>
