@@ -65,6 +65,7 @@ export default class Product extends Component {
         .then(res => {
             if (res.status === 201) {
                 console.log("product created")
+                this.props.history.push("/product");
             }
         })
         .catch( err => {
@@ -136,7 +137,7 @@ export default class Product extends Component {
                                                 <select className="form-control" name="category" onChange={this.handleChange} value={this.state.category} required>
                                                     <option value="" disabled>select product category</option>
                                                     {this.state.categories.sort((a, b) => { return a._id < b._id}).map((data, i) => 
-                                                    <option key={i} value={data.name}>{data.name}</option>
+                                                    <option key={i} value={data._id}>{data.name}</option>
                                                     )}
                                                 </select>
                                             </div>
@@ -168,8 +169,8 @@ export default class Product extends Component {
                                             <div className="col-sm-6">
                                                 <select className="form-control" name="hot" onChange={this.handleChange} value={this.state.hot} required>
                                                     <option value="" disabled>select hot deals</option>
-                                                    <option value="yes">YES</option>
-                                                    <option value="No">NO</option>
+                                                    <option value="true">YES</option>
+                                                    <option value="false">NO</option>
                                                 </select>
                                             </div>
                                         </div>

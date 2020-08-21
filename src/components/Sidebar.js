@@ -56,6 +56,32 @@ export default class Sidebar extends Component {
                     </div>
                 </div>
                 </li>
+
+                <li className="nav-item">
+                <a className="nav-link collapsed" href="!#" data-toggle="collapse" data-target="#orders" aria-expanded="true" aria-controls="category">
+                    <i className="fas fa-fw fa-folder"></i>
+                    <span>Orders</span>
+                </a>
+                <div id="orders" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div className="bg-white py-2 collapse-inner rounded">
+                    <a className="collapse-item" href="/orders">All Orders</a>
+                    {/* <a className="collapse-item" href="!#">Cards</a> */}
+                    </div>
+                </div>
+                </li>
+
+                <li className="nav-item">
+                <a className="nav-link collapsed" href="!#" data-toggle="collapse" data-target="#pool" aria-expanded="true" aria-controls="category">
+                    <i className="fas fa-fw fa-folder"></i>
+                    <span>Pool</span>
+                </a>
+                <div id="pool" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div className="bg-white py-2 collapse-inner rounded">
+                    <a className="collapse-item" href="/pools">Participants</a>
+                    {/* <a className="collapse-item" href="!#">Cards</a> */}
+                    </div>
+                </div>
+                </li>
                 <hr className="sidebar-divider" />
         
                 <div className="sidebar-heading">
