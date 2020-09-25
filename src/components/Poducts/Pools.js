@@ -61,7 +61,7 @@ export default class Pools extends Component {
                                                                
                                                                 {/* <th>S/N</th> */}
                                                                 <th>Products</th>
-                                                                <th>User</th>
+                                                                <th>Participants</th>
                                                                 {/* <th>Status</th> */}
                                                                 <th>Operations</th>
                                                             </tr>

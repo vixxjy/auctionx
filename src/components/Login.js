@@ -62,7 +62,7 @@ export default class Login extends Component {
                                 <div className="text-center">
                                     <h1 className="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     { this.state.loginErrors &&
-                                        <div class="alert alert-danger" role="alert">
+                                        <div className="alert alert-danger" role="alert">
                                        { this.state.loginErrors }
                                       </div> }
                                 </div>

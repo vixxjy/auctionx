@@ -12,6 +12,11 @@ export default class Category extends Component {
         this.state = {
             name: "",
             image: "",
+            urls: "",
+            selectedFile: null,
+            coverImage: null,
+            loading: false,
+            percentage: 0,
             categories: []
         }
 
@@ -22,7 +27,13 @@ export default class Category extends Component {
 
     componentDidMount() {
         this.getCategories();
+    }
 
+    fileChangedHandler = event => {
+        const file = event.target.files[0];
+
+        let self = this;
+        self.setState({ selectedFile: file });
     }
 
     handleChange(e) {
@@ -31,24 +42,58 @@ export default class Category extends Component {
         });
     }
 
-    handleSubmit(e) {
-        const {name , image} = this.state;
-        
-        let data = {
-            name, 
-            image
-        }
-        axios.post(`${url}/category`, data, { headers: headers })
+    handleSubmit(e) {            
+        e.preventDefault();
+        this.setState({ percentage: 20})
+        const {name, selectedFile} = this.state;
+
+        let urls = null;
+
+        this.setState({loading: true, percentage: 40 })
+        const formData = new FormData();
+
+        formData.append(
+            'uri', selectedFile
+        );
+   
+        axios.post(`${url}/upload/`, formData, { headers: headers })
+        .then( res => {
+           
+
+            if (res.status === 201) {
+                console.log("Upload successful");
+                
+                urls = res.data.url;
+                console.log(urls, "url");
+                this.setState({image: urls, percentage: 60})
+            }
+            
+        })
+        .then( res => {
+
+            const {image} = this.state;
+            
+            let data = {
+                name, 
+                image
+            }
+    
+            console.log(data);
+             axios.post(`${url}/category`, data, { headers: headers })
             .then(res => {
                 if (res.status === 201) {
                     console.log("category created")
+                    this.setState({percentage: 100})
                 }
             })
             .catch( err => {
                 console.log("category error", err)
             });
+        })
+        .catch( err => {
+            console.log("Upload error", err)
+        });
             
-            e.preventDefault();
     }
 
     getCategories() {
@@ -100,7 +145,7 @@ export default class Category extends Component {
                                         <div className="form-group row">
                                             <label htmlFor="exampleInputUsername2" className="col-sm-3 col-form-label">Image</label>
                                             <div className="col-sm-6">
-                                            <input type="file" className="form-control" name="image" />
+                                            <input type="file" className="form-control" name="image" onChange={this.fileChangedHandler}/>
                                             </div>
                                         </div>
                                 
@@ -124,7 +169,7 @@ export default class Category extends Component {
                                                                 <tr key={i}>
                                                                     <td>{data.name}</td>
                                                                     <td> 
-                                                                        <img src="https://pandafoods.co.in/wp-content/uploads/2015/02/spices-0011.jpg" style={{height: '50px', width: '50px'}} alt="imagec" />
+                                                                        <img src={data.image} style={{height: '50px', width: '50px'}} alt="imagec" />
                                                                     </td>
                                                                     <td>
                                                                         <a href="!#">

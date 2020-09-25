@@ -21,10 +21,24 @@ export default class Sidebar extends Component {
                 </li>
         
                 <hr className="sidebar-divider"/>
-        
+{/*         
                 <div className="sidebar-heading">
                 Products
+                </div> */}
+
+                
+                <li className="nav-item">
+                <a className="nav-link collapsed" href="!#" data-toggle="collapse" data-target="#category" aria-expanded="true" aria-controls="category">
+                    <i className="fas fa-fw fa-folder"></i>
+                    <span>Category</span>
+                </a>
+                <div id="category" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div className="bg-white py-2 collapse-inner rounded">
+                    <a className="collapse-item" href="/category">Add Category</a>
+                    {/* <a className="collapse-item" href="!#">Cards</a> */}
+                    </div>
                 </div>
+                </li>
 
                 <li className="nav-item">
                 <a className="nav-link collapsed" href="!#" data-toggle="collapse" data-target="#products" aria-expanded="true" aria-controls="products">
@@ -43,19 +57,6 @@ export default class Sidebar extends Component {
                 {/* <div className="sidebar-heading">
                     Category
                 </div> */}
-
-                <li className="nav-item">
-                <a className="nav-link collapsed" href="!#" data-toggle="collapse" data-target="#category" aria-expanded="true" aria-controls="category">
-                    <i className="fas fa-fw fa-folder"></i>
-                    <span>Category</span>
-                </a>
-                <div id="category" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div className="bg-white py-2 collapse-inner rounded">
-                    <a className="collapse-item" href="/category">Add Category</a>
-                    {/* <a className="collapse-item" href="!#">Cards</a> */}
-                    </div>
-                </div>
-                </li>
 
                 <li className="nav-item">
                 <a className="nav-link collapsed" href="!#" data-toggle="collapse" data-target="#orders" aria-expanded="true" aria-controls="category">
@@ -84,9 +85,9 @@ export default class Sidebar extends Component {
                 </li>
                 <hr className="sidebar-divider" />
         
-                <div className="sidebar-heading">
+                {/* <div className="sidebar-heading">
                 All Users
-                </div>
+                </div> */}
                 <li className="nav-item">
                 <a className="nav-link collapsed" href="!#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
                     <i className="fas fa-fw fa-folder"></i>
@@ -94,9 +95,7 @@ export default class Sidebar extends Component {
                 </a>
                 <div id="collapseUtilities" className="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div className="bg-white py-2 collapse-inner rounded">
-                    <h6 className="collapse-header">Custom Utilities:</h6>
-                    <a className="collapse-item" href="!#">Colors</a>
-                    <a className="collapse-item" href="!#">Borders</a>
+                    <a className="collapse-item" href="/users">Users</a>
                     </div>
                 </div>
                 </li>

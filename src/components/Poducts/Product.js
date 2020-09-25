@@ -22,6 +22,9 @@ export default class Product extends Component {
             status: "",
             hot: "",
             user_type: "",
+            last_viewed: "",
+            scheduled_date: "",
+            end_date: "",
             categories: []
         }
 
@@ -61,16 +64,16 @@ export default class Product extends Component {
         }
 
         console.log(data)
-        axios.post(`${url}/products`, data, { headers: headers })
-        .then(res => {
-            if (res.status === 201) {
-                console.log("product created")
-                this.props.history.push("/product");
-            }
-        })
-        .catch( err => {
-            console.log("product error", err)
-        });
+        // axios.post(`${url}/products`, data, { headers: headers })
+        // .then(res => {
+        //     if (res.status === 201) {
+        //         console.log("product created")
+        //         this.props.history.push("/product");
+        //     }
+        // })
+        // .catch( err => {
+        //     console.log("product error", err)
+        // });
         
     }
 
@@ -142,7 +145,7 @@ export default class Product extends Component {
                                                 </select>
                                             </div>
                                         </div>
-                                        <div className="form-group row">
+                                        {/* <div className="form-group row">
                                             <label htmlFor="exampleInputEmail2" className="col-sm-3 col-form-label">Status</label>
                                             <div className="col-sm-6">
                                                 <select className="form-control" name="status" onChange={this.handleChange} value={this.state.status} required>
@@ -153,7 +156,7 @@ export default class Product extends Component {
                                                     <option value="soon">Soon</option>
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div> */}
                                         <div className="form-group row">
                                             <label htmlFor="exampleInputEmail2" className="col-sm-3 col-form-label">User Type</label>
                                             <div className="col-sm-6">
@@ -188,17 +191,38 @@ export default class Product extends Component {
                                             onChange={this.handleChange} value={this.state.total_slot} placeholder="Total slot"/>
                                             </div>
                                         </div>
-                                        <div className="form-group row">
+                                        {/* <div className="form-group row">
                                             <label htmlFor="exampleInputUsername2" className="col-sm-3 col-form-label">Available Slot</label>
                                             <div className="col-sm-6">
                                             <input type="text" className="form-control" name="available_slot" required
                                             onChange={this.handleChange} value={this.state.available_slot} placeholder="Available slot"/>
                                             </div>
+                                        </div> */}
+                                        <div className="form-group row">
+                                            <label htmlFor="exampleInputUsername2" className="col-sm-3 col-form-label">last Viewed</label>
+                                            <div className="col-sm-6">
+                                            <input type="text" className="form-control" name="last_viewed" required
+                                            onChange={this.handleChange} value={this.state.last_viewed} placeholder="last_viewed"/>
+                                            </div>
+                                        </div>
+                                        <div className="form-group row">
+                                            <label htmlFor="exampleInputUsername2" className="col-sm-3 col-form-label">Scheduled Date</label>
+                                            <div className="col-sm-6">
+                                            <input type="text" className="form-control" name="scheduled_date" required
+                                            onChange={this.handleChange} value={this.state.scheduled_date} placeholder="scheduled_date"/>
+                                            </div>
+                                        </div>
+                                        <div className="form-group row">
+                                            <label htmlFor="exampleInputUsername2" className="col-sm-3 col-form-label">End Date</label>
+                                            <div className="col-sm-6">
+                                            <input type="date" className="form-control" name="end_date" required
+                                            onChange={this.handleChange} value={this.state.end_date} placeholder="end_date"/>
+                                            </div>
                                         </div>
                                         <div className="form-group row">
                                             <label htmlFor="exampleInputUsername2" className="col-sm-3 col-form-label">Price</label>
                                             <div className="col-sm-6">
-                                            <input type="text" className="form-control" name="price" required
+                                            <input type="date" className="form-control" name="price" required
                                             onChange={this.handleChange} value={this.state.price} placeholder="Product Price"/>
                                             </div>
                                         </div>
