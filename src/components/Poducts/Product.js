@@ -25,6 +25,7 @@ export default class Product extends Component {
             last_viewed: "",
             scheduled_date: "",
             end_date: "",
+            selectedFile: null,
             categories: []
         }
 
@@ -37,6 +38,13 @@ export default class Product extends Component {
 
     }
 
+    fileChangedHandler = event => {
+        const file = event.target.files[0];
+
+        let self = this;
+        self.setState({ selectedFile: file });
+    }
+
     handleChange(e) {
         this.setState({
             [e.target.name]: e.target.value
@@ -45,35 +53,66 @@ export default class Product extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        const {name, image, total_slot, available_slot, thumbnail, description, category, 
-            price, location, user_type, status, hot} = this.state;
-        
-        let data = {
-            name, 
-            image, 
-            category, 
-            total_slot, 
-            available_slot, 
-            thumbnail, 
-            description,
-            price,
-            location, 
-            user_type, 
-            status,
-            hot
-        }
+        const {name, total_slot, available_slot, description, category, 
+            price, location, user_type, status, hot, selectedFile, last_viewed,
+            scheduled_date, end_date} = this.state;
 
-        console.log(data)
-        // axios.post(`${url}/products`, data, { headers: headers })
-        // .then(res => {
-        //     if (res.status === 201) {
-        //         console.log("product created")
-        //         this.props.history.push("/product");
-        //     }
-        // })
-        // .catch( err => {
-        //     console.log("product error", err)
-        // });
+            let urls = null;
+
+        const formData = new FormData();
+
+        formData.append(
+            'uri', selectedFile
+        );
+
+        axios.post(`${url}/upload/`, formData, { headers: headers })
+        .then( res => {
+           
+            if (res.status === 201) {
+                console.log("Upload successful");
+                
+                urls = res.data.url;
+
+                this.setState({image: urls,thumbnail: urls, percentage: 60})
+            }
+            
+        })
+        .then( res => {
+
+            const {image, thumbnail} = this.state;
+            
+            let data = {
+                name, 
+                image, 
+                category, 
+                total_slot, 
+                available_slot, 
+                thumbnail, 
+                description,
+                price,
+                location, 
+                user_type, 
+                status,
+                hot,
+                last_viewed,
+                scheduled_date,
+                end_date
+            }
+            console.log(data);
+            axios.post(`${url}/products`, data, { headers: headers })
+            .then(res => {
+                if (res.status === 201) {
+                    console.log("product created")
+                    this.props.history.push("/product");
+                }
+            })
+            .catch( err => {
+                console.log("product error", err)
+            });
+        })
+        .catch( err => {
+            console.log("Upload error", err)
+        });
         
     }
 
@@ -125,15 +164,15 @@ export default class Product extends Component {
                                         <div className="form-group row">
                                             <label htmlFor="exampleInputUsername2" className="col-sm-3 col-form-label">Image</label>
                                             <div className="col-sm-6">
-                                            <input type="file" className="form-control" name="image" />
+                                            <input type="file" className="form-control" name="image" onChange={this.fileChangedHandler}/>
                                             </div>
                                         </div>
-                                        <div className="form-group row">
+                                        {/* <div className="form-group row">
                                             <label htmlFor="exampleInputUsername2" className="col-sm-3 col-form-label">Thumbnail</label>
                                             <div className="col-sm-6">
                                             <input type="file" className="form-control" name="thumbnail" />
                                             </div>
-                                        </div>
+                                        </div> */}
                                         <div className="form-group row">
                                             <label htmlFor="exampleInputEmail2" className="col-sm-3 col-form-label">Category</label>
                                             <div className="col-sm-6">
@@ -198,17 +237,17 @@ export default class Product extends Component {
                                             onChange={this.handleChange} value={this.state.available_slot} placeholder="Available slot"/>
                                             </div>
                                         </div> */}
-                                        <div className="form-group row">
+                                        {/* <div className="form-group row">
                                             <label htmlFor="exampleInputUsername2" className="col-sm-3 col-form-label">last Viewed</label>
                                             <div className="col-sm-6">
-                                            <input type="text" className="form-control" name="last_viewed" required
+                                            <input type="date" className="form-control" name="last_viewed" required
                                             onChange={this.handleChange} value={this.state.last_viewed} placeholder="last_viewed"/>
                                             </div>
-                                        </div>
+                                        </div> */}
                                         <div className="form-group row">
                                             <label htmlFor="exampleInputUsername2" className="col-sm-3 col-form-label">Scheduled Date</label>
                                             <div className="col-sm-6">
-                                            <input type="text" className="form-control" name="scheduled_date" required
+                                            <input type="date" className="form-control" name="scheduled_date" required
                                             onChange={this.handleChange} value={this.state.scheduled_date} placeholder="scheduled_date"/>
                                             </div>
                                         </div>
@@ -222,7 +261,7 @@ export default class Product extends Component {
                                         <div className="form-group row">
                                             <label htmlFor="exampleInputUsername2" className="col-sm-3 col-form-label">Price</label>
                                             <div className="col-sm-6">
-                                            <input type="date" className="form-control" name="price" required
+                                            <input type="number" className="form-control" name="price" required
                                             onChange={this.handleChange} value={this.state.price} placeholder="Product Price"/>
                                             </div>
                                         </div>

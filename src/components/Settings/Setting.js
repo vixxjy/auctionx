@@ -6,17 +6,11 @@ import Sidebar from '../Sidebar'
 import Topbar from '../Topbar'
 import Footer from '../Footer'
 
-export default class Category extends Component {
+export default class Setting extends Component {
     constructor(props) {
         super(props);
         this.state = {
             name: "",
-            image: "",
-            urls: "",
-            selectedFile: null,
-            coverImage: null,
-            loading: false,
-            percentage: 0,
             categories: []
         }
 

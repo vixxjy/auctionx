@@ -95,7 +95,7 @@ export default class Sidebar extends Component {
                 </a>
                 <div id="collapseUtilities" className="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div className="bg-white py-2 collapse-inner rounded">
-                    <a className="collapse-item" href="/users">Users</a>
+                    <a className="collapse-item" href="/users">Registered Users</a>
                     </div>
                 </div>
                 </li>
@@ -103,7 +103,9 @@ export default class Sidebar extends Component {
                 <hr className="sidebar-divider d-none d-md-block"/>
       
                 <div className="text-center d-none d-md-inline">
-                    <button className="rounded-circle border-0" id="sidebarToggle"></button>
+                    <a href="/users">
+                    <button className="rounded-circle border-0" id="sidebarToggle">Settings</button>
+                    </a>
                 </div>
           </ul>
         )

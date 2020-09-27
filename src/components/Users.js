@@ -59,18 +59,21 @@ getUsers() {
                             <div className="card shadow mb-4">
                                 <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                 <h6 className="m-0 font-weight-bold text-primary">Registered Users</h6>
+                                <a href="">
+                                <button className="btn btn-sm btn-primary float-right">Add User</button>
+                                </a>
                                 </div>
+                               
                             <hr />
                             <div className="table-responsive">
                                         
                                 <table className="table table-striped">
                                     <thead>
                                         <tr>
-                                            
                                             <th>Firstname</th>
                                             <th>Gender</th>
                                             <th>State</th>
-                                            <th>City</th>
+                                            <th>Email</th>
                                             <th>Phone</th>
                                             <th>Role</th>
                                             <th>Operations</th>
@@ -84,7 +87,7 @@ getUsers() {
                                                 <td>{data.firstName}</td>
                                                 <td>{data.gender}</td>
                                                 <td>{data.state}</td>
-                                                <td>{data.city}</td>
+                                                <td>{data.email}</td>
                                                 <td>{data.phone}</td>
                                                 <td>{data.permission}</td>
                                                 <td>{data.subscription_status}</td>
