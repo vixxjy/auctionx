@@ -9,6 +9,8 @@ import ProductList from './components/Poducts/ProductList'
 import Orders from './components/Poducts/Orders'
 import Pools from './components/Poducts/Pools'
 import Users from './components/Users'
+import Location from './components/Settings/Location'
+import Settings from './components/Settings/Setting'
 
 class App extends Component {
   constructor(props) {
@@ -53,6 +55,10 @@ class App extends Component {
            <Route exact={true} path="/pools" component={Pools} 
           />
            <Route exact={true} path="/users" component={Users} 
+          />
+           <Route exact={true} path="/location" component={Location} 
+          />
+           <Route exact={true} path="/setting" component={Settings} 
           />
         </Switch>
       </div>

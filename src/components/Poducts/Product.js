@@ -26,7 +26,8 @@ export default class Product extends Component {
             scheduled_date: "",
             end_date: "",
             selectedFile: null,
-            categories: []
+            categories: [],
+            locations: []
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -128,6 +129,21 @@ export default class Product extends Component {
                 this.setState({
                     categories: res.data.data
                   });
+
+                  axios.get(`${url}/location`, 
+                  { headers: headers }
+                  )
+                  .then(res => {
+                      console.log(res);
+                      if (res.status === 200) {
+                          this.setState({
+                              locations: res.data.data
+                            });
+                      }
+                  })
+                  .catch( err => {
+                      console.log("get category error", err)
+                  });
             }
         })
         .catch( err => {
@@ -211,16 +227,20 @@ export default class Product extends Component {
                                             <div className="col-sm-6">
                                                 <select className="form-control" name="hot" onChange={this.handleChange} value={this.state.hot} required>
                                                     <option value="" disabled>select hot deals</option>
-                                                    <option value="true">YES</option>
-                                                    <option value="false">NO</option>
+                                                    <option value="true">Yes</option>
+                                                    <option value="false">No</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div className="form-group row">
                                             <label htmlFor="exampleInputUsername2" className="col-sm-3 col-form-label">Location</label>
                                             <div className="col-sm-6">
-                                            <input type="text" className="form-control" name="location" required
-                                            onChange={this.handleChange} value={this.state.location} placeholder="loacation"/>
+                                            <select className="form-control" name="location" onChange={this.handleChange} value={this.state.location} required>
+                                                    <option value="" disabled>select location</option>
+                                                    {this.state.locations.sort((a, b) => { return a._id < b._id}).map((data, i) => 
+                                                    <option key={i} value={data._id}>{data.name}</option>
+                                                    )}
+                                                </select>
                                             </div>
                                         </div>
                                         <div className="form-group row">

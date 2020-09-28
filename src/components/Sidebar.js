@@ -103,8 +103,8 @@ export default class Sidebar extends Component {
                 <hr className="sidebar-divider d-none d-md-block"/>
       
                 <div className="text-center d-none d-md-inline">
-                    <a href="/users">
-                    <button className="rounded-circle border-0" id="sidebarToggle">Settings</button>
+                    <a href="/setting">
+                    <button className="rounded-circle border-0" id="sidebarToggle">Setting</button>
                     </a>
                 </div>
           </ul>

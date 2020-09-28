@@ -64,8 +64,8 @@ export default class ProductList extends Component {
                                                                
                                                                 <th>Name</th>
                                                                 <th>Image</th>
-                                                                <th>Slot</th>
-                                                                <th>Status</th>
+                                                                <th>Price</th>
+                                                                <th>Total Slot</th>
                                                                 <th>Operations</th>
                                                             </tr>
                                                         </thead>
@@ -74,10 +74,10 @@ export default class ProductList extends Component {
                                                                 <tr key={i}>
                                                                     <td>{data.name}</td>
                                                                     <td> 
-                                                                        <img src="https://pandafoods.co.in/wp-content/uploads/2015/02/spices-0011.jpg" style={{height: '50px', width: '50px'}} alt="imagec" />
+                                                                        <img src={data.image} style={{height: '50px', width: '50px'}} alt="imagec" />
                                                                     </td>
-                                                                    <td>{data.slot}</td>
-                                                                    <td><span className="badge badge-success">{data.status}</span></td>
+                                                                    <td>₦ {data.price}</td>
+                                                                    <td><span className="badge badge-success">{data.total_slot}</span></td>
                                                                     <td>
                                                                         <a href="!#">
                                                                             <button className="btn btn-primary btn-sm">

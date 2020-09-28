@@ -59,7 +59,7 @@ getUsers() {
                             <div className="card shadow mb-4">
                                 <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                 <h6 className="m-0 font-weight-bold text-primary">Registered Users</h6>
-                                <a href="">
+                                <a href="!#">
                                 <button className="btn btn-sm btn-primary float-right">Add User</button>
                                 </a>
                                 </div>
