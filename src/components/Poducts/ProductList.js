@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { url } from '../../utils/config';
+import headers from '../../utils/header'
 import Sidebar from '../Sidebar'
 import Topbar from '../Topbar'
 import Footer from '../Footer'
@@ -36,6 +37,19 @@ export default class ProductList extends Component {
         .catch( err => {
             console.log("get category error", err)
         });
+    }
+
+    onDelete(id) {
+        axios.delete(`${url}/products/${id}`, { headers: headers })
+        .then(res => {
+            //if (res.status === 201) {
+                window.location.reload();
+            //}
+        })
+        .catch( err => {
+            console.log("product delete error", err)
+        });
+        //this.setState({})
     }
         
     render() {
@@ -84,7 +98,7 @@ export default class ProductList extends Component {
                                                                             <span className="fas fa-fw fa-pen"></span>
                                                                             </button>
                                                                         </a>
-                                                                        <button data-toggle="modal" data-target="" className="btn btn-danger btn-sm">
+                                                                        <button data-toggle="modal" data-target={`#deleteModal${data._id}`} className="btn btn-danger btn-sm">
                                                                         <span className="fas fa-fw fa-trash"></span>
                                                                         </button>
                                                                         
@@ -101,6 +115,27 @@ export default class ProductList extends Component {
                             </div>
                         </div>
                     </div>
+                    {this.state.products.map((data, i) => 
+                    <div key={i} className="modal" id={`deleteModal${data._id}`} tabIndex="-1" role="dialog">
+                                 <div className="modal-dialog" role="document">
+                                    <div className="modal-content">
+                                    <div className="modal-header">
+                                        <h5 className="modal-title">Delete Confirmation</h5>
+                                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div className="modal-body">
+                                        <p> "Are you sure you want to delete?"</p>
+                                    </div>
+                                    <div className="modal-footer">
+                                        <button type="button" className="btn btn-secondary" data-dismiss="modal">NO</button>
+                                        <button type="button" className="btn btn-primary" onClick={this.onDelete.bind(this, data._id)}>Yes</button>
+                                    </div>
+                                    </div>
+                                </div>
+                        </div>
+                      )}
                     {/* footer */}
                     <Footer />
                 </div>
