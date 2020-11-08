@@ -6,7 +6,7 @@ import Sidebar from '../Sidebar'
 import Topbar from '../Topbar'
 import Footer from '../Footer'
 
-export default class Product extends Component {
+export default class ProductEdit extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -35,8 +35,26 @@ export default class Product extends Component {
     }
 
     componentDidMount() {
+        const { id } = this.props.match.params;
+
+        this.getSingleProduct(id)
+
         this.getCategories();
 
+    }
+
+    getSingleProduct($id) {
+        console.log($id);
+        axios.get(`${url}/products/${$id}`, { headers: headers })
+        .then( res => {
+           
+            if (res.status === 201) {
+                console.log(res);
+            }   
+        })
+        .catch( err => {
+            console.log("errorsss", err)
+        });
     }
 
     fileChangedHandler = event => {
@@ -250,18 +268,13 @@ export default class Product extends Component {
                                             onChange={this.handleChange} value={this.state.total_slot} placeholder="Total slot"/>
                                             </div>
                                         </div>
-                                        <div className="form-group row">
-                                            <label htmlFor="exampleInputEmail2" className="col-sm-3 col-form-label">Status</label>
+                                        {/* <div className="form-group row">
+                                            <label htmlFor="exampleInputUsername2" className="col-sm-3 col-form-label">Available Slot</label>
                                             <div className="col-sm-6">
-                                                <select className="form-control" name="status" onChange={this.handleChange} value={this.state.status} required>
-                                                    <option value="" disabled>select product status</option>
-                                                    <option value="open">Open</option>
-                                                    <option value="selling">Selling</option>
-                                                    <option value="sold">Sold</option>
-                                                    <option value="soon">Soon</option>
-                                                </select>
+                                            <input type="text" className="form-control" name="available_slot" required
+                                            onChange={this.handleChange} value={this.state.available_slot} placeholder="Available slot"/>
                                             </div>
-                                        </div>
+                                        </div> */}
                                         {/* <div className="form-group row">
                                             <label htmlFor="exampleInputUsername2" className="col-sm-3 col-form-label">last Viewed</label>
                                             <div className="col-sm-6">

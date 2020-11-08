@@ -93,7 +93,7 @@ export default class ProductList extends Component {
                                                                     <td>₦ {data.price}</td>
                                                                     <td><span className="badge badge-success">{data.total_slot}</span></td>
                                                                     <td>
-                                                                        <a href="!#">
+                                                                        <a href={`/product/${data._id}`}>
                                                                             <button className="btn btn-primary btn-sm">
                                                                             <span className="fas fa-fw fa-pen"></span>
                                                                             </button>

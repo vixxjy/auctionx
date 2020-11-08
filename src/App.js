@@ -5,6 +5,7 @@ import Login from './components/Login'
 import Dashboard from './components/Dashboard'
 import Category from './components/Poducts/Category'
 import Product from './components/Poducts/Product'
+import ProductEdit from './components/Poducts/ProductEdit'
 import ProductList from './components/Poducts/ProductList'
 import Orders from './components/Poducts/Orders'
 import Pools from './components/Poducts/Pools'
@@ -49,6 +50,8 @@ class App extends Component {
            <Route exact={true} path="/add-product" component={Product} 
           />
           <Route exact={true} path="/product" component={ProductList} 
+          />
+          <Route exact path="/product/:id" component={ProductEdit} 
           />
            <Route exact={true} path="/orders" component={Orders} 
           />
